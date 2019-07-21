@@ -2,5 +2,5 @@
 Appunti per l'esame di Programmazione Sicura A.A. 18/19 UNISA Informatica.  
 Qui troverete dei miei riassunti per le soluzioni ad alcune delle sfide di [Exploit Education](http://exploit.education/) e da [DVWA](http://www.dvwa.co.uk/), gli appunti riguardano le macchine:
 - Nebula livelli [1](https://github.com/CiccioTecchio/Appunti-PS/blob/master/iniezione%20locale/Nebula-lvl1.md), [2](https://github.com/CiccioTecchio/Appunti-PS/blob/master/iniezione%20locale/Nebula-lvl2.md), [7](https://github.com/CiccioTecchio/Appunti-PS/blob/master/iniezione%20remota/Nebula-lvl7.md), [13](https://github.com/CiccioTecchio/Appunti-PS/blob/master/iniezione%20locale/Nebula-lvl13.md)
-- DVWA livello low
+- DVWA livello low: [SQL Injection](https://github.com/CiccioTecchio/Appunti-PS/blob/master/iniezione%20remota/DVWA-SQL_Injection.md), [Cross Site Scripting(XSS) di tipo Stored](https://github.com/CiccioTecchio/Appunti-PS/blob/master/iniezione%20remota/DVWA-XSS_Stored.md), [XSS Reflected](https://github.com/CiccioTecchio/Appunti-PS/blob/master/iniezione%20remota/DVWA-XSS_Reflected.md) e [CSRF](https://github.com/CiccioTecchio/Appunti-PS/blob/master/iniezione%20remota/DVWA-CSRF.md)
 - Protostar stack 0, 1, 2, 3, 4, 5
