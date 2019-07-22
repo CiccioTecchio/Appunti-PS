@@ -39,7 +39,7 @@ Sostituiamo i caratteri speciali "**;**" e "**/**" con i rispettivi valori esade
 Questa volta l'iniezione locale ha successo ma _getflag_ non viene eseguito con i permessi di **flag07**.
 
 ### Iniezione remota
-Per effettuare una iniezione remota bisogna identificare un server WEb che esegua _index.cgi_ con SETUID, se esiste un server del genere la sfida è vinta
+Per effettuare una iniezione remota bisogna identificare un server Web che esegua _index.cgi_ con SETUID, se esiste un server del genere la sfida è vinta
 
 ## Come sfruttare le vulnerabilità
 Visualizziamo i metadati di _thttpd.conf_ e scopriamo che è leggibile da tutti e modificabile solo da root, leggendo il file scopriamo che il server
@@ -50,14 +50,14 @@ Visualizziamo i metadati di _thttpd.conf_ e scopriamo che è leggibile da tutti 
 
 Verifichiamo se  il server sia veramente in esecuzione sulla porta 7007 con
 ```bash
-# verifichiamo se esistono processi di nome pgrep
+# verifichiamo se esistono processi di nome thttpd
 > pgrep -l thttpd
 # esistono
 # verifichiamo se sono in ascolto sulla 7007
 > netstat -ntl | grep 7007
 # un processo è in ascolto su 7007
 ```
-Non abbiamo certezza del fatto che il processo sia thttpd e non possiamo usare `netstat -ntlp` per sapere il nome del processo perchè non siamo root, quindi dobbiamo interagire direttamente con il server Web inviadogli richieste tramite il comando `nc` quindi facciamo
+Non abbiamo certezza del fatto che il processo in ascolto sulla 7007 sia thttpd e non possiamo usare `netstat -ntlp` per sapere il nome del processo perchè non siamo root, quindi dobbiamo interagire direttamente con il server Web inviadogli richieste tramite il comando `nc` quindi facciamo
 ```bash
 > nc localhost 7007
 > GET / HTTP/1.0
