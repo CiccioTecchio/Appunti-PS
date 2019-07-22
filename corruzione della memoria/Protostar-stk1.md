@@ -21,7 +21,7 @@ Proviamo ad eseguire
 # stampa errore
 Try again, you got 0x64636261
 ```
-Anche se l'input è stato inserito correttamente appare a rovesci, questo avviene perchè l'architettura Intel è **little endian**!
+Anche se l'input è stato inserito correttamente appare a rovescio, questo avviene perchè l'architettura Intel è **little endian**!
 ### Istruzioni da eseguire
 ```bash
 > /opt/protostar/bin/stack1 'python –c 'print "a" * 64 + "dcba"'' 
