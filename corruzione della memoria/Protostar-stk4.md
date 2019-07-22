@@ -10,7 +10,7 @@ Proviamo a mandere in buffer overflow la variabile _buffer_ con:
 #output
 Segmentation fault
 ```
-Il programma scrive le prime 64 a nel buffer e le restanti vengono scritte in locazioni contigue alcune riservate alla memorizzazione della variabile EBP per la gestione dello stack.
+Il programma scrive le prime 64 "a" in _buffer_ e le restanti vengono scritte in locazioni contigue alcune riservate alla memorizzazione della variabile EBP per la gestione dello stack.
 ### Riflessione
 A differenza della sfida precedente qui non abbiamo una variabile esplicita da sovrascrivere. Abbiamo bisogno di una cella che se sovrascritta provoca l'alterazione del flusso di esecuzione.
 
@@ -37,7 +37,7 @@ Per ottenere l'indirizzo di ritorno di _main()_ è necessario ricostruire il **l
 ```
 Analizziamo il dump e vediamo che i registri coinvolti sono:
 - ESP: punta al top dello stack
-- EBP: puntatore che consente di accedere alle variabili all'interno del frame
+- EBP: puntatore che consente di accedere alle variabili dell'interno frame
 
 Inseriamo un **breakpoint** alla prima istruzione del main (abbiamo l'indirizzo perchè abbiamo il dump).
 ```bash
@@ -58,7 +58,7 @@ $3 = (void *) 0xbffffd4c
 ## Come sfruttare le vulnerabilità
 Una volta seguita l'evoluzione dello stack possiamo capire quante "a" dobbiamo ripetere fino ad arrivare all'indirizzo di ritorno.  
 Quindi dobbiamo dare in input un numero di a pari a  
-`sizeof(buffer) + sizeof(padding) + sizeof(vecchio EBP)`.
+`sizeof(buffer) + sizeof(padding) + sizeof(vecchio EBP)`.  
 La dimensione del buffer è **64 byte** + la dimensione del padding è **8 byte** + dimensione del vecchio EBP che è **4 byte**, quindi possiamo dire che servono 76 "a" per arrivare all'indirizzo di ritorno, una volta arrivati a quell'indirizzo scriviamo l'indirizzo di _win()_ (al contrario perchè è Little Endian).
 
 ### Istruzioni da eseguire
