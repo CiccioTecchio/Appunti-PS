@@ -44,8 +44,8 @@ Per verificare la fattibilità di questo attacco bisogna verificare due ipotesi:
 > pmap $$
 # output
 ```
-L'output di pmap ci dice che lo **stack** del programma è piazzato su indirizza alti, l'area del codice(**TEXT**) è piazzata sugli indirizzi bassi e l'area del programma(**Global data**)è piazzata nel mezzo. Ma ancora non siamo in grado di capire se le due variabili sono contigue dobbiamo recuperare [informazioni sullo stack layout](http://duartes.org/gustavo/blog/post/journey-to-the-stack/).  
-Scopiramo che lo stack cresce verso gli indirizzi bassi e che le variabili definite per ultime stiano in cima allo stack e che lo stack cresce verso gli indirizzi bassi, quindi allocando 68 byte alla variabile _buffer_ essa(crescendo verso il basso) andrà a riempire se stessa ea sovrascrivere il contenuto di _modified_
+L'output di pmap ci dice che lo **stack** del programma è piazzato su indirizza alti, l'area del codice(**TEXT**) è piazzata sugli indirizzi bassi e l'area del programma(**Global data**)è piazzata nel mezzo. Ma ancora non siamo in grado di capire se le due variabili siano contigue, per capirlo dobbiamo recuperare [informazioni sullo stack layout](http://duartes.org/gustavo/blog/post/journey-to-the-stack/).  
+Scopiramo che lo stack cresce verso gli indirizzi bassi e che le variabili definite per ultime stiano in cima allo stack e che lo stack cresce verso gli indirizzi bassi, quindi allocando 68 byte alla variabile _buffer_ essa(crescendo verso il basso) andrà a riempire se stessa e a sovrascrivere il contenuto di _modified_
 
 
 ### Istruzioni da eseguire
