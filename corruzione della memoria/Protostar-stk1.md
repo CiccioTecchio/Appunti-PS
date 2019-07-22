@@ -1,4 +1,4 @@
-# Protostar_stack 1 - Tipo di attacco
+# Protostar_stack 1 - Buffer overflow
 
 ## Obiettivo della sfida
 Impostare la variabile _modified_ al valore **0x61626364** a tempo di esecuzione
