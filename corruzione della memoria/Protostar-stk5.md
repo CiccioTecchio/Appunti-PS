@@ -11,8 +11,7 @@ Potremo utilizzare il codice iniettato per far eseguire una shell.
 ## Strategia di attacco
 Produrre un input contenente lo **shellcode** in codifica esadecimale, i caratteri di **padding** fino all'indirizzo di ritorno e l'**indirizzo iniziale dello shell code** da scrivere nella cella dell'indirizzo di ritorno.  
 Dando quest input a **stack5** otteniamo una shell di root poichè stack5 è SETUID root.
-### Prima di iniziare
-Al fine di semplificarci la vita logghiamo come root, la password per le macchine nebula è godmode e cambiamo shell perchè quella di default(bash) non consente l'autocompletamento quindi scegliete una shell fra quelle disponibili(io uso `/bin/sh`) digitando `cat /etc/shells`verranno mostrate le shell disponibili, per cambiarla digitate `chsh`, inserite la password di root e inserite la shell che volete utilizzare ad esempio `/bin/sh`.
+
 ### Preparazione dello shellcode
 Sappiamo che la dimensione dello shellcode deve essere grande al più 76 byte(distanza fra _buffer_ e indirizzo di ritorno) e non deve contenere byte nulli.  
 Preparare uno shellcode è semplice basta utilizzare la funzione C _execve()_, il **problema** è iniettarlo nell'input di stack5
