@@ -7,7 +7,6 @@
 
 ## Strategia di attacco
 L'amministratore non è intenzionato a fornire la password e romperla risulta troppo difficile quindi bisogna passare a strategie alternative. Controlliamo i permessi di `/home/flag13/flag13`,  veniamo a sapere che il binario flag13 è di proprietà dell'utente **flag13** ed è eseguibile dagli utenti del gruppo **level13** inoltre ha il bit SETUID alzato.
-### Cosa fare
 
 ### Commento di level13_safe.c
 Il programma controlla se l'UID è diverso da 1000 allora stampa un messaggio di errore, altrimenti crea il token di autenticazione per l'utente **flag13** e lo stampa.
@@ -53,7 +52,7 @@ Quindi per vincere la sfida facciamo
 ```
 
 ## Debolezze
-1. Manipolando LD_PRELOAD riusciamo a sovrascrivere getuid()
+1. Manipolando LD_PRELOAD riusciamo a sovrascrivere _getuid()_
 2. by-pass tramite **spoofing**, l'attaccante può riprodurre il token di autenticazione di un altro utente.
 ## Mitigazione
 1. Questa volta non possiamo semplicemente ripulire la variabile di ambiente perchè LD_PRELOAD agisce prima del caricamento del programma.
