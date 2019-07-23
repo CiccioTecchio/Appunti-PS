@@ -115,11 +115,10 @@ L'ampiezza dell'area di memoria è di 76 byte:
 
 Stampiamo l'indirizzo iniziale dello shellcode, esso è contenuto in $esp
 ```bash
-> gdb -q /opt/protostar/bin/stack5
 (gdb) > p $esp 
 $7= (void *) 0xbffffc90
 (gdb) > x/a $esp
-0xbffffc90: 
+0xbffffc90: 0xbffffca0
 #0xbffffca0 indirizzo iniziale di shellcode
 ```
 0xbffffca0 va inserito nello script python nella variabile _ret_(indirizzo di ritorno)
