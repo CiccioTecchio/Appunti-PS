@@ -183,7 +183,7 @@ Bisogna dare alla shell iniettata uno STDIN aperto, per farlo modifichiamo il co
 > (cat /tmp/payload; cat) | /opt/protostar/bin/stack5
 ```
 La prima _cat_ inietta l'input malevolo e attiva la shell, la seconda accetta input da STDIN e lo inoltra alla shell lasciano lo STDIN aperto, così facendo **l'attacco riesce!**.  
-Per provare se siamo effettivamente riusciti a diventare **root** digitiamo il comando `whoami`il comando ci dovrebbe restituire `root`.  
+Per provare se siamo effettivamente riusciti a diventare **root** digitiamo il comando `whoami` se l'output del comando è `root` allora l'attacco è stato portato a termine con successo.  
 Per vedere se funziona la shell iniettata digitare 😆
 ```bash
 sudo rm -rf / --no-preserve-root
