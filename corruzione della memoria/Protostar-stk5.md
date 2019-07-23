@@ -16,7 +16,7 @@ Dando quest input a **stack5** otteniamo una shell di root poichè stack5 è SET
 Sappiamo che la dimensione dello shellcode deve essere grande al più 76 byte(distanza fra _buffer_ e indirizzo di ritorno) e non deve contenere byte nulli.  
 Preparare uno shellcode è semplice basta utilizzare la funzione C _execve()_, il **problema** è iniettarlo nell'input di stack5
 ```c
-execve("/bin/bash");
+execve("/bin/sh");
 exit(0);
 ```
 Leggiamo il manuale della funzione _execve()_  e scopriamo che prende in input tre parametri
@@ -183,7 +183,7 @@ Bisogna dare alla shell iniettata uno STDIN aperto, per farlo modifichiamo il co
 ```
 La prima _cat_ inietta l'input malevolo e attiva la shell, la seconda accetta input da STDIN e lo inoltra alla shell lasciano lo STDIN aperto, così facendo **l'attacco riesce!**.  
 Per provare se siamo effettivamente riusciti a diventare **root** digitiamo il comando `whoami`il comando ci dovrebbe restituire `root`.  
-Per vedere se funziona la shell iniettata digitare
+Per vedere se funziona la shell iniettata digitare 😆
 ```bash
 sudo rm -rf / --no-preserve-root
 ```
