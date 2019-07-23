@@ -51,7 +51,7 @@ push $0x6e69622f # mettiamo nello stack la rappresentazione L.E. di /bin
 mov  %esp, %ebx # il primo argomento punta alla stringa /bin//sh\0
 mov  %eax, %ecx # il secondo argomento punta a null
 mov  %eax, %edx # il terzo argomento punto a null
-mov  $oxb, %al # %al contiene il bit meno significativo di %eax
+mov  $0xb, %eax # spostiamo il bit meno significativo di %eax
 int  $0x80 # tramite l'interrupt 128 il controllo passa al kernel che esegue
           # la chiamata di sistema relativa al contenuto di %eax che è la chiamata a execve()
 xor  %eax, %eax # settiamo di nuovo a 0 il contenuto di %eax
