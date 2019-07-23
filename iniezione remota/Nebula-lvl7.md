@@ -1,7 +1,7 @@
 # Nebula_07 - Iniezione remota
 
 ## Obiettivo della sfida
-Esecuzione del programma `/bin/getflag`con i privilegi dell'utente **flag07**.
+Esecuzione del programma `/bin/getflag` con i privilegi dell'utente **flag07**.
 Non cosideremo attacchi con login diretto, iniezione tramite variabili di ambiente e librerie condivise
 dato che questi attacchi non avranno successo. Ci concetriamo sulla **iniezione diretta di comandi**
 
@@ -11,11 +11,11 @@ Controlliamo i permessi di _index.cgi_ e scopriamo che esso è leggibile ed eseg
 
 ### Commento di index.cgi
 1. Crea lo scheletro di una pagina HTML
-2. Con il comando `ping -c 3 IP 2>&1` invia 3 pacchetti all'host il cui indirizzo è IP
+2. Con il comando `ping -c 3 IP 2>&1` invia 3 pacchetti all'host il cui indirizzo è _IP_
 3. Stampa l'output sulla pagina HTML
 
 ### Esecuzione di index.cgi
-Eseguiamo lo script in locale passando come Host 8.8.8.8 quindi:
+Eseguiamo lo script in locale passando come _Host_ 8.8.8.8 quindi:
 1. loggiamo come **level07**
 2. `> /home/flag07/index.cgi Host=8.8.8.8`
 3. Il risultato è la stampa del ping
@@ -52,12 +52,12 @@ Verifichiamo se  il server sia veramente in esecuzione sulla porta 7007 con
 ```bash
 # verifichiamo se esistono processi di nome thttpd
 > pgrep -l thttpd
-# esistono
-# verifichiamo se sono in ascolto sulla 7007
+# il processo thttpd esiste
+# verifichiamo c'è qualche processo in ascolto sulla 7007
 > netstat -ntl | grep 7007
 # un processo è in ascolto su 7007
 ```
-Non abbiamo certezza del fatto che il processo in ascolto sulla 7007 sia thttpd e non possiamo usare `netstat -ntlp` per sapere il nome del processo perchè non siamo root, quindi dobbiamo interagire direttamente con il server Web inviadogli richieste tramite il comando `nc` quindi facciamo
+Non abbiamo certezza del fatto che il processo in ascolto sulla 7007 sia _thttpd_ e non possiamo usare `netstat -ntlp` per sapere il nome del processo perchè non siamo root, quindi dobbiamo interagire direttamente con il server Web inviadogli richieste tramite il comando `nc` quindi facciamo
 ```bash
 > nc localhost 7007
 > GET / HTTP/1.0
@@ -65,7 +65,7 @@ Non abbiamo certezza del fatto che il processo in ascolto sulla 7007 sia thttpd 
 L'accesso a root(/) ci è proibito ma scopriamo che il server è effettivamente _thttpd_
 
 ### Istruzioni da eseguire
-Quindi il nostro vettore d'attacco verrà costruito utilizzando `nc localhost 7007` ed effettuando una GET verso _index.cgi_ passandogli come parametro Host 8.8.8.8  contatenato a /bin/getflag con i rispettivi punti e virgola e slash in esadecimanle
+Quindi il nostro vettore d'attacco verrà costruito utilizzando `nc localhost 7007` ed effettuando una GET verso _index.cgi_ passandogli come parametro Host 8.8.8.8  concatenato /bin/getflag con i rispettivi punti e virgola e slash in esadecimanle
 ```bash
 > #login come level07
 > nc localhost 7007
