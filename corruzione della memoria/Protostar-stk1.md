@@ -12,7 +12,7 @@ Mandiamo in escuzione il **stack1**
 Try again, you got 0x00000000
 ```
 ### Cosa fare
-Riempire _buffer_ con 64 caratteri e alla fine appendere i 4 corrispondenti a 0x61626364 essi sono la **"abcd"**
+Riempire _buffer_ con 64 caratteri e alla fine appendere i 4 corrispondenti a 0x61626364 essi corrispondono alla stringa **"abcd"**
 
 ## Come sfruttare le vulnerabilità
 Proviamo ad eseguire
@@ -21,7 +21,7 @@ Proviamo ad eseguire
 # stampa errore
 Try again, you got 0x64636261
 ```
-Anche se l'input è stato inserito correttamente appare a rovescio, questo avviene perchè l'architettura Intel è **little endian**!
+Anche se l'input è stato inserito correttamente appare a rovescio, questo avviene perchè l'architettura Intel è **Little Endian**!
 ### Istruzioni da eseguire
 ```bash
 > /opt/protostar/bin/stack1 'python –c 'print "a" * 64 + "dcba"'' 
