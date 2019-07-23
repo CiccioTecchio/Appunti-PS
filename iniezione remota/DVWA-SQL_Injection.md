@@ -12,14 +12,14 @@ con lo scopo di ottenere più informazioni possibili per la costruzione di un al
 ### Cosa fare
 Inseriamo nella form **_"UserID"_: 1**, l'input è sia sintatticamente che semanticamente corretto quindi ci aspettiamo una risposta corretta e infatti la otteniamo dato che vengono stampate le informazioni dell'utente con id 1.  
 Proviamo adesso a dare un input sintatticamente corretto ma scorretto semanticamente, ci aspettiamo una risposta scorretta.  
-Inseriamo **_"UserID"_: -1** e il sistema non ci restituisce niente, proviamo anche ad inserire **_"UserID"_: 1.0** ma la risposta è la stessa di quando abbiamo provato ad inserire 1 quindi il sistema converte in double in intero
+Inseriamo **_"UserID"_: -1** e il sistema non ci restituisce niente, proviamo anche ad inserire **_"UserID"_: 1.0** ma la risposta è la stessa di quando abbiamo provato ad inserire 1 quindi il sistema converte il double in intero
 
 ### Riflessione dell'input
-La riflessione dell'input è l'atto di un server di includere l'input di un utente nella risposta, la presenza della riflessione permetta all'attaccante di vedere il risultato dell'attacco quindi il fatto che un sistema presenti la riflessione dell'input è negativo.  
-Ci accorgiamo che(in questa sfida) la riflessione è presente perchè se facciamo **_"UserID"_: 2-1** abbiamo una risposta che presenta al campo ID il valore 2-1.
+La riflessione dell'input è l'atto di un server di includere l'input di un utente nella risposta, la presenza della riflessione permette all'attaccante di vedere il risultato dell'attacco; il fatto che un sistema presenti la riflessione dell'input è negativo.  
+Ci accorgiamo che(in questa sfida) la riflessione è presente perchè se facciamo **_"UserID"_: 2-1** abbiamo una risposta che presenta nel campo ID il valore 2-1.
 
 ## Come sfruttare le vulnerabilità
-Cerchiamo di sfruttare questa vulnerailità dando come input ad UserID una striga che termina con apice singolo, notiamo che ci viene restituito un **errore di sintassi SQL**. Ci sembra di capire che la query SQL converte il valore in input in intero e preleva la riga corrispondente nella tabella.  
+Cerchiamo di sfruttare questa vulnerailità dando come input ad UserID una striga che termina con apice singolo, notiamo che ci viene restituito un **errore di sintassi SQL**. Ci sembra di capire che la query SQL converte il valore di input in un intero e che preleva la riga corrispondente nella tabella.  
 Proviamo ad iniettare un input che trasformi la query SQL in un'altra query che stampi tutte le tuple della tabella.  
 Per fare questo effettuiamo l'iniezione di una **tautologia** essa è una condizione sempre vera a prescindere dall'input dell'utente ad esempio
 ```sql
@@ -27,7 +27,7 @@ SELECT t
 FROM tbl
 WHERE t = <valore> OR '1' = '1'
 ```
-La clausola WHERE sarà sempre vera a prescindere dal valore di t.
+La clausola WHERE sarà sempre vera a prescindere dal valore di _t_.
 
 ### Istruzioni da eseguire
 Iniettiamo una tautologia inserendo:  
