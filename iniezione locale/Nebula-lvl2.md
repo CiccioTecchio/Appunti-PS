@@ -41,7 +41,7 @@ Il problema è che nel buffer dopo la lettura della variabile di ambiente c'è l
 ## Debolezze
 1. Privilegi troppo elevati a **flag02**
 2. La versione di BASH non effettua l'abbassamento dei privilegi
-3. Su l'input esterno non vengono escapeati i carattiri speciali
+3. Su l'input esterno non vengono escapeati i caratteri speciali
 
 ## Mitigazione
 1. Abbassare il bit **SETUID** di flag02
