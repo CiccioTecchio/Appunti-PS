@@ -4,12 +4,12 @@
 Modifica del valore della variabile `modified` a tempo di esecuzione
 
 ## Strategia di attacco
-Come prima cosa otteniamo informazioni sul **S.0** della macchina che dobbiamo attaccare, quindi digitiamo:
+Come prima cosa otteniamo informazioni sul **S.0.** della macchina che dobbiamo attaccare, quindi digitiamo:
 ```bash
 > lsb_release -a
-# è un sistema Debian versione 6.0.3
+# è un sistema Debian v. 6.0.3
 ```
-per ottenere informazioni riguardo l'**architettura ** digitiamo:
+per ottenere informazioni riguardo l'**architettura** digitiamo:
 ```bash
 > arch
 #i686 a 32bit Pentium II
@@ -20,7 +20,7 @@ per ottenere info sul **processore** montato digitiamo:
 # info sul processore
 ```
 ### Esecuzione lecita
-Come prima cosa vediamo come si comporta il l'eseguibile di _stack0_ digitiamo:
+Come prima cosa vediamo come si comporta l'eseguibile di _stack0_ digitiamo:
 ```bash
 > cd /opt/protostar/bin
 > ./stack0
