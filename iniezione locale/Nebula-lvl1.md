@@ -19,8 +19,8 @@ Per effettuare lo step 3 analizziamo il sorgente di **level1.c**
 ### Commento di level1.c
 Esso imposta tutti gli UID e i GID al loro valore effettivo e poi tramite la funzione di libreria `system()` esegue un comando shell passato come argomento(restituisce -1 in caso di errore). L'ultima istruzione di **level1.c** è la seguente:
 `system("/usr/bin/env echo and now what?");`.
-Dal manuale della funzione `system` scopriamo che essa non funziona correttamente se`/bin/bash` punta a `bash` e su questo tipo di macchina ci troviamo proprio in questa situazione.  
-Quindi la causa del malfunzionamento è il fatto che BASH quando invocata come sh **non effettua** l'abbassamento dei privilegi.
+Dal manuale della funzione `system` scopriamo che essa non funziona correttamente se`/bin/sh` punta a `bash` controlliamo se ci troviamo in questa situazione lanciano: `ls -l /bin/sh` e dall'output scopriamo che _sh_ punta a _bash_.  
+La causa del malfunzionamento è il fatto che BASH quando invocata come sh **non effettua** l'abbassamento dei privilegi.
 Sappiamo che la chiamata a system effettua una `echo` possiamo _inoculare_ qualcosa di diverso dalla echo, questo è possibile modificando le variabili di ambiente. 
 
 ## Come sfruttare le vulnerabilità
