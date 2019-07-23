@@ -102,7 +102,7 @@ Salviamo l'output in un file
 Per iniettare il payload nella cella dell'indirizzo di ritorno bisogna ricostruire il layout dello stack per farlo eseguiamo **stack5** con _gdb_
 ```bash
 > gdb -q /opt/protostar/bin/stack5
-(gdb) > disad main # disassembliamo il main
+(gdb) > disas main # disassembliamo il main
 # stampa il dump
 (gdb) > b*0x080483d9 #inseriamo un breakpoint prima della leave
 (gdb) > r < /tmp/payload #passiamo il payload
