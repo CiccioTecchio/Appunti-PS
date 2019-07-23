@@ -57,9 +57,10 @@ $3 = (void *) 0xbffffd4c
 
 ## Come sfruttare le vulnerabilità
 Una volta seguita l'evoluzione dello stack possiamo capire quante "a" dobbiamo ripetere fino ad arrivare all'indirizzo di ritorno.  
-Quindi dobbiamo dare in input un numero di a pari a  
+Quindi dobbiamo dare in input un numero di "a" pari a  
 `sizeof(buffer) + sizeof(padding) + sizeof(vecchio EBP)`.  
-La dimensione del buffer è **64 byte** + la dimensione del padding è **8 byte** + dimensione del vecchio EBP che è **4 byte**, quindi possiamo dire che servono 76 "a" per arrivare all'indirizzo di ritorno, una volta arrivati a quell'indirizzo scriviamo l'indirizzo di _win()_ (al contrario perchè è Little Endian).
+La dimensione del buffer è **64 byte**, la dimensione del padding è **8 byte** e la dimensione del vecchio EBP che è **4 byte**; quindi possiamo dire che servono **76 "a"** per arrivare all'indirizzo di ritorno.  
+Arrivati alla cella dell'indirizzo di ritorno scriviamo l'indirizzo di _win()_ (al contrario perchè è Little Endian).
 
 ### Istruzioni da eseguire
 ```bash
