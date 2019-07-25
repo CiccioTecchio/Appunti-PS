@@ -6,7 +6,7 @@ Eseguire la funzione _win()_ a tempo di esecuzione, ciò modifica il flusso di e
 ## Tentativo
 Proviamo a mandere in buffer overflow la variabile _buffer_ con:
 ```bash
-> python -c 'print "a" + 80' | /opt/protostar/stack4
+> python -c 'print "a" * 80' | /opt/protostar/stack4
 #output
 Segmentation fault
 ```
